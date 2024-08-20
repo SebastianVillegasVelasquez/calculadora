@@ -1,21 +1,21 @@
 import React from "react";
+import { TouchableOpacity, Text, View, StyleProp, ViewStyle, TextStyle } from 'react-native';
 
-export const SimpleButton = ({changeFunction, textButton, style}) => {
-
-    interface ButtonProps {
-        changeFunction: () => void;
-        textButton: string;
-        style: object;
-    }
-
-    return (
-        <div>
-            <button
-                onClick={() => {
-                changeFunction(textButton)
-            }} style={style}>
-                {textButton}
-            </button>
-        </div>
-)
+interface ButtonProps {
+    changeFunction: (text: string) => void;
+    textButton: string;
+    style?: StyleProp<ViewStyle | TextStyle>;
 }
+
+export const SimpleButton: React.FC<ButtonProps> = ({ changeFunction, textButton, style }) => {
+    return (
+        <View>
+            <TouchableOpacity
+                onPress={() => changeFunction(textButton)}
+                style={style}
+            >
+                <Text>{textButton}</Text>
+            </TouchableOpacity>
+        </View>
+    );
+};
